@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": "resource",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "lib": ["dom", "dom.iterable", "es5", "es6", "es7", "es2016.array.include"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "build",
+    "paths": {
+      "component/*": ["component/*"],
+      "defs/*": ["defs/*"]
+    },
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "target": "es6",
+    "typeRoots": [
+      "resource/types"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
