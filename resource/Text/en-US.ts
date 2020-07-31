@@ -1,0 +1,16 @@
+export const en_US: Record<string, string> = {
+    'button.ok': 'OK',
+    'button.cancel': 'Cancel',
+    'button.back': 'Back',
+    'mainmenu.list.singleplayer': 'Single player',
+    'mainmenu.list.multiplayer': 'Multiplayer',
+    'mainmenu.list.options': 'Settings',
+    'mainmenu.list.about': 'Credits',
+    'mainmenu.list.exit': 'Exit',
+    'exitgame.header.title': 'Exit game',
+    'exitgame.content.message': 'Are you sure you want to exit the game?',
+    'options.list.gameplay': 'Gameplay',
+    'options.list.graphics': 'Graphics & Sound',
+    'options.list.back': 'Back',
+    'options.gameplay.content.title': 'Gameplay options',
+};

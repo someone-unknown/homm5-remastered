@@ -7,7 +7,11 @@ app.on('ready', async (): Promise<void> => {
 
     let window: BrowserWindow = new BrowserWindow({
         frame: false,
-        show: false
+        fullscreen: true,
+        show: false,
+        webPreferences: {
+            nodeIntegration: true
+        }
     });
 
     window.on('ready-to-show', (): void => {

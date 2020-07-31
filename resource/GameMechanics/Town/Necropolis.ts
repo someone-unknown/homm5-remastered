@@ -1,0 +1,1 @@
+import { Town } from 'GameMechanics/Type/Town';

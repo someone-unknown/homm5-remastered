@@ -10,18 +10,17 @@
     "noImplicitAny": true,
     "outDir": "build",
     "paths": {
-      "component/*": ["component/*"],
-      "defs/*": ["defs/*"]
+      "GameMechanics/*":  ["GameMechanics/*"],
+      "Media/*":  ["Media/*"],
+      "Text/*":  ["Text/*"],
+      "UI/*": ["UI/*"]
     },
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": false,
     "target": "es6",
-    "typeRoots": [
-      "resource/types"
-    ]
+    "types": ["index.d.ts"]
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["resource"],
+  "exclude": ["node_modules"]
 }
