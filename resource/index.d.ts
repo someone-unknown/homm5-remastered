@@ -33,3 +33,9 @@ declare module "*.mp3"
     const pathname: string;
     export = pathname;
 }
+
+declare module "*.glsl"
+{
+    const pathname: string;
+    export = pathname;
+}

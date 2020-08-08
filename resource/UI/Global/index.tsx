@@ -6,8 +6,11 @@ import { createHashHistory, History } from 'history';
 import { GlobalStyle } from 'UI/Global/style';
 import { Intro } from 'UI/Intro';
 import { MainMenu } from 'UI/MainMenu';
+import { Singleplayer } from 'UI/Singleplayer';
+import { SelectScenario } from 'UI/SelectScenario';
 import { Options } from 'UI/Options';
 import { GameplayOptions } from 'UI/GameplayOptions';
+import { GraphicsOptions } from 'UI/GraphicsOptions';
 import { GameLogo } from 'UI/GameLogo';
 import { MenuBackground } from 'UI/MenuBackground';
 
@@ -21,7 +24,7 @@ export const Global: FunctionComponent = (): ReactElement => (
         <GlobalState.Provider>
             <Language.Provider>
                 <GlobalStyle/>
-                <Router history={history}>
+                <Router history={ history }>
                     <Switch>
                         <Route path="/" exact>
                             <Intro redirectTo="/menu"/>
@@ -32,11 +35,20 @@ export const Global: FunctionComponent = (): ReactElement => (
                             <Route path="/menu" exact>
                                 <MainMenu/>
                             </Route>
+                            <Route path="/menu/singleplayer" exact>
+                                <Singleplayer/>
+                            </Route>
+                            <Route path="/menu/singleplayer/scenario" exact>
+                                <SelectScenario/>
+                            </Route>
                             <Route path="/menu/options" exact>
                                 <Options/>
                             </Route>
                             <Route path="/menu/options/gameplay" exact>
                                 <GameplayOptions/>
+                            </Route>
+                            <Route path="/menu/options/graphics" exact>
+                                <GraphicsOptions/>
                             </Route>
                         </Route>
                     </Switch>

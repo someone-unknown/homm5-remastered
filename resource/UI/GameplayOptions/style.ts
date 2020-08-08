@@ -69,7 +69,7 @@ export const GameplayOptionsContent = styled.div
 export const GameplayOptionsPanel = styled.div
 `
     margin: 0;
-    padding: 0;
+    padding: 15px;
     display: flex;
     position: absolute;
     width: 297px;
@@ -79,6 +79,7 @@ export const GameplayOptionsPanel = styled.div
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    box-sizing: border-box;
 `;
 
 export const GameplayOptionsLeftPanel = styled(GameplayOptionsPanel)

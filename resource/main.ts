@@ -1,12 +1,11 @@
 import path from 'path';
-import { app, BrowserWindow } from 'electron';
+import { app, ipcMain, BrowserWindow, IpcMainEvent } from 'electron';
 
 app.allowRendererProcessReuse = true;
 
 app.on('ready', async (): Promise<void> => {
 
     let window: BrowserWindow = new BrowserWindow({
-        frame: false,
         fullscreen: true,
         show: false,
         webPreferences: {
@@ -16,6 +15,7 @@ app.on('ready', async (): Promise<void> => {
 
     window.on('ready-to-show', (): void => {
         window.webContents.openDevTools();
+        window.setMenu(null);
         window.maximize();
         window.show();
     });
@@ -25,6 +25,10 @@ app.on('ready', async (): Promise<void> => {
     });
 
     await window.loadFile(path.join(__dirname, 'index.html'));
+
+    ipcMain.on('graphics:fullscreen', (event: IpcMainEvent, value: boolean): void => {
+        window.setFullScreen(value);
+    });
 
 });
 

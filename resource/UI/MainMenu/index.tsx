@@ -12,6 +12,7 @@ import {
 } from 'UI/MainMenu/style';
 
 export const MainMenu: FunctionComponent = observer((): ReactElement => {
+
     const [ isExitModalShown, setIsExitModalShown ] = useState<boolean>(false);
 
     const exitButtonClickHandler = useCallback((event: MouseEvent<HTMLButtonElement>): void => {
@@ -39,6 +40,9 @@ export const MainMenu: FunctionComponent = observer((): ReactElement => {
         <Fragment>
             <ExitGame
                 show={ isExitModalShown }
+                onHide={ (): void => {
+                    setIsExitModalShown(false);
+                } }
                 onConfirm={ (): void => {
                     window.close();
                 } }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link, LinkProps } from 'react-router-dom';
 
-import InterfaceList4Texture from 'Media/Texture/Interface/List/List4.png';
+import InterfaceList4Texture from 'Media/Texture/Interface/List/List3.png';
 
 import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
 

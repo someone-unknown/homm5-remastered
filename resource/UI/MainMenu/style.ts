@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link, LinkProps } from 'react-router-dom';
 
-import MainMenuListTexture from 'Media/Texture/MainMenu/List.png';
+import MainMenuListTexture from 'Media/Texture/Interface/List/List4.png';
 import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
 
 export const MainMenuList = styled.ul

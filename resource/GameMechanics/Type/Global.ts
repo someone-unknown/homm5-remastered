@@ -2,8 +2,11 @@ import { observable } from 'mobx';
 import { createContext, createElement, useContext, Context, FunctionComponent, ReactElement } from 'react';
 import { observer, useObserver } from 'mobx-react';
 
+import { Graphics } from 'GameMechanics/Type/Graphics';
 import { Language } from 'GameMechanics/Type/Language';
-import { Sound } from 'GameMechanics/Type/Sound';
+import { Music } from 'GameMechanics/Type/Music';
+import { Profile } from 'GameMechanics/Type/Profile';
+import { Scenario } from 'GameMechanics/Type/Scenario';
 
 export class Global
 {
@@ -22,9 +25,18 @@ export class Global
     }
 
     @observable
-    public readonly sound: Sound = new Sound();
+    public readonly music: Music = new Music();
 
     @observable
     public readonly language: Language = new Language();
+
+    @observable
+    public readonly graphics: Graphics = new Graphics();
+
+    @observable
+    public readonly profile: Profile = new Profile();
+
+    @observable
+    public readonly scenario: Scenario = new Scenario();
 
 }
