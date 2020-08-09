@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState, Fragment, FunctionComponent, E
 import { observer } from 'mobx-react';
 import { FormattedMessage } from 'react-intl';
 
+import { Global } from 'GameMechanics/Type/Global';
+
 import { ExitGame } from 'UI/ExitGame';
 
 import {
@@ -13,6 +15,7 @@ import {
 
 export const MainMenu: FunctionComponent = observer((): ReactElement => {
 
+    const { graphics }: Global = Global.useContext();
     const [ isExitModalShown, setIsExitModalShown ] = useState<boolean>(false);
 
     const exitButtonClickHandler = useCallback((event: MouseEvent<HTMLButtonElement>): void => {
@@ -52,27 +55,77 @@ export const MainMenu: FunctionComponent = observer((): ReactElement => {
             />
             <MainMenuList>
                 <MainMenuListItem>
-                    <MainMenuOption to="/menu/singleplayer">
+                    <MainMenuOption
+                        to="/menu/singleplayer"
+                        onMouseOver={ (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'pointer';
+                        } }
+                        onMouseOut={ (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'default';
+                        } }
+                    >
                         <FormattedMessage id="mainmenu.list.singleplayer"/>
                     </MainMenuOption>
                 </MainMenuListItem>
                 <MainMenuListItem>
-                    <MainMenuOption to="/menu/multiplayer">
+                    <MainMenuOption
+                        to="/menu/multiplayer"
+                        onMouseOver={ (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'pointer';
+                        } }
+                        onMouseOut={ (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'default';
+                        } }
+                    >
                         <FormattedMessage id="mainmenu.list.multiplayer"/>
                     </MainMenuOption>
                 </MainMenuListItem>
                 <MainMenuListItem>
-                    <MainMenuOption to="/menu/options">
+                    <MainMenuOption
+                        to="/menu/options"
+                        onMouseOver={ (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'pointer';
+                        } }
+                        onMouseOut={ (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'default';
+                        } }
+                    >
                         <FormattedMessage id="mainmenu.list.options"/>
                     </MainMenuOption>
                 </MainMenuListItem>
                 <MainMenuListItem>
-                    <MainMenuOption to="/menu/about">
+                    <MainMenuOption
+                        to="/menu/about"
+                        onMouseOver={ (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'pointer';
+                        } }
+                        onMouseOut={ (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'default';
+                        } }
+                    >
                         <FormattedMessage id="mainmenu.list.about"/>
                     </MainMenuOption>
                 </MainMenuListItem>
                 <MainMenuListItem>
-                    <MainMenuButton onClick={ exitButtonClickHandler }>
+                    <MainMenuButton
+                        onClick={ exitButtonClickHandler }
+                        onMouseOver={ (event: MouseEvent<HTMLButtonElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'pointer';
+                        } }
+                        onMouseOut={ (event: MouseEvent<HTMLButtonElement>): void => {
+                            event.preventDefault();
+                            graphics.cursor = 'default';
+                        } }
+                    >
                         <FormattedMessage id="mainmenu.list.exit"/>
                     </MainMenuButton>
                 </MainMenuListItem>

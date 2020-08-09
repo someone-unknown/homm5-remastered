@@ -5,8 +5,6 @@ import MonotypeCorsivaWoff2Font from 'Media/Font/Monotype Corsiva.woff2';
 import TahomaWoffFont from 'Media/Font/Tahoma.woff';
 import TahomaWoff2Font from 'Media/Font/Tahoma.woff2';
 
-import DefaultCursorTexture from 'Media/Texture/Cursor/Default.png';
-
 export const GlobalStyle = createGlobalStyle
 `
     @font-face {
@@ -41,7 +39,7 @@ export const GlobalStyle = createGlobalStyle
         user-select: none;
         color: #FFFFFF;
         background-color: #000000;
-        cursor: url('${ DefaultCursorTexture }'), default;
+        cursor: none;
         font-family: 'Monotype Corsiva', sans-serif;
     }
 `;

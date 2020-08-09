@@ -89,10 +89,15 @@ module.exports = [{
                 loader: 'source-map-loader',
             },
             {
-                test: /\.(png|jpg|mp3|mp4|woff|woff2|glsl)$/i,
+                test: /\.(png|jpg|mp3|mp4|woff|woff2)$/i,
                 exclude: /node_modules/,
                 loader: 'url-loader',
             },
+            {
+                test: /\.glsl$/i,
+                exclude: /node_modules/,
+                loader: 'text-loader',
+            }
         ],
     },
 

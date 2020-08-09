@@ -37,6 +37,7 @@
     "react-intl": "^5.0.2",
     "react-router-dom": "^5.1.2",
     "styled-components": "^5.0.1",
+    "text-loader": "0.0.1",
     "three": "^0.119.1"
   }
 }

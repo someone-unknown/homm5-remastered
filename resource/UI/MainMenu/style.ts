@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Link, LinkProps } from 'react-router-dom';
 
 import MainMenuListTexture from 'Media/Texture/Interface/List/List4.png';
-import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
 
 export const MainMenuList = styled.ul
 `
@@ -46,7 +45,7 @@ export const MainMenuOption = styled(Link)<LinkProps>
     overflow: hidden;
     outline: none;
     color: #3e5262;
-    cursor: url('${ CursorPointerTexture }'), pointer;
+    cursor: none;
 
     :visited {
         color: #2419d9;
@@ -73,7 +72,7 @@ export const MainMenuButton = styled.button
     justify-content: flex-start;
     overflow: hidden;
     color: #3e5262;
-    cursor: url('${ CursorPointerTexture }'), pointer;
+    cursor: none;
     box-sizing: content-box;
 
     :hover {

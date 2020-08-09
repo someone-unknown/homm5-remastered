@@ -4,6 +4,7 @@ import { Route, Router, Switch } from 'react-router-dom';
 import { createHashHistory, History } from 'history';
 
 import { GlobalStyle } from 'UI/Global/style';
+import { CursorOverlay } from 'UI/CursorOverlay';
 import { Intro } from 'UI/Intro';
 import { MainMenu } from 'UI/MainMenu';
 import { Singleplayer } from 'UI/Singleplayer';
@@ -24,6 +25,7 @@ export const Global: FunctionComponent = (): ReactElement => (
         <GlobalState.Provider>
             <Language.Provider>
                 <GlobalStyle/>
+                <CursorOverlay/>
                 <Router history={ history }>
                     <Switch>
                         <Route path="/" exact>
