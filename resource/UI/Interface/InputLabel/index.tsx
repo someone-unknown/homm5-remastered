@@ -1,7 +1,8 @@
-import React, { DetailedHTMLProps, FunctionComponent, LabelHTMLAttributes, ReactElement } from 'react';
+import React, { useCallback, DetailedHTMLProps, FunctionComponent, LabelHTMLAttributes, MouseEvent, ReactElement } from 'react';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
+import { Global } from 'GameMechanics/Type/Global';
 
 const InputGroupLabel = styled.label
 `
@@ -14,11 +15,38 @@ const InputGroupLabel = styled.label
     font-weight: normal;
     color: #bfb79b;
     text-align: left;
-    cursor: url('${ CursorPointerTexture }'), pointer;
+    cursor: none;
 `;
 
 export type InputLabelProps = Omit<DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>, 'ref'>;
 
-export const InputLabel: FunctionComponent<InputLabelProps> = ({ children, ...props }): ReactElement => (
-    <InputGroupLabel { ...props }>{ children }</InputGroupLabel>
-);
+export const InputLabel: FunctionComponent<InputLabelProps> = observer(({
+    onMouseOut = (): void => {},
+    onMouseOver = (): void => {},
+    children,
+    ...props
+}): ReactElement => {
+
+    const { graphics }: Global = Global.useContext();
+
+    const inputLabelMouseOutHandler = useCallback((event: MouseEvent<HTMLLabelElement>): void => {
+        graphics.cursor = 'default';
+        onMouseOut(event);
+    }, [ graphics, onMouseOut ]);
+
+    const inputLabelMouseOverHandler = useCallback((event: MouseEvent<HTMLLabelElement>): void => {
+        graphics.cursor = 'pointer';
+        onMouseOut(event);
+    }, [ graphics, onMouseOver ]);
+
+    return (
+        <InputGroupLabel
+            onMouseOut={ inputLabelMouseOutHandler }
+            onMouseOver={ inputLabelMouseOverHandler }
+            { ...props }
+        >
+            { children }
+        </InputGroupLabel>
+    );
+
+});

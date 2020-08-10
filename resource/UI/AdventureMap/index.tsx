@@ -1,8 +1,14 @@
-import React, { Fragment, FunctionComponent, PropsWithChildren, ReactElement } from 'react';
+import React, { Fragment, FunctionComponent, ReactElement } from 'react';
 import { observer } from 'mobx-react';
 
-export const AdventureMap: FunctionComponent = observer(({ children }: PropsWithChildren<{}>): ReactElement => (
-    <Fragment>
-        {children}
-    </Fragment>
-));
+import { ResourceBar } from 'UI/ResourceBar';
+
+export const AdventureMap: FunctionComponent = observer((): ReactElement => {
+
+    return (
+        <Fragment>
+            <ResourceBar/>
+        </Fragment>
+    );
+
+});

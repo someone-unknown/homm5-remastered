@@ -1,5 +1,8 @@
 import React, { useCallback, useMemo, ChangeEvent, DetailedHTMLProps, FunctionComponent, InputHTMLAttributes, MouseEvent, ReactElement, ReactNode } from 'react';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
+
+import { Global } from 'GameMechanics/Type/Global';
 
 import RangeDisabledTexture from 'Media/Texture/Interface/Range/Disabled.png';
 import RangeNormalTexture from 'Media/Texture/Interface/Range/Normal.png';
@@ -18,8 +21,6 @@ import HorizontalScrollbarLeftPushedTexture from 'Media/Texture/Interface/Horizo
 import HorizontalScrollbarRightDisabledTexture from 'Media/Texture/Interface/HorizontalScrollbar/Right/Disabled.png';
 import HorizontalScrollbarRightNormalTexture from 'Media/Texture/Interface/HorizontalScrollbar/Right/Normal.png';
 import HorizontalScrollbarRightPushedTexture from 'Media/Texture/Interface/HorizontalScrollbar/Right/Pushed.png';
-
-import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
 
 interface RangeContainerProps
 {
@@ -55,7 +56,7 @@ const RangeElement = styled.input
     appearance: none;
     outline: none;
     background: transparent;
-    cursor: url('${ CursorPointerTexture }'), pointer;
+    cursor: none;
 
     :disabled {
         pointer-event: none;
@@ -122,7 +123,7 @@ const RangeButton = styled.button
     border: none;
     outline: none;
     flex-shrink: 0;
-    cursor: url('${ CursorPointerTexture }'), pointer;
+    cursor: none;
 
     :disabled {
         pointer-event: none;
@@ -162,7 +163,7 @@ export interface CheckboxProps extends Omit<DetailedHTMLProps<InputHTMLAttribute
     value?: number;
 }
 
-export const Range: FunctionComponent<CheckboxProps> = ({
+export const Range: FunctionComponent<CheckboxProps> = observer(({
     className= '',
     disabled = false,
     indicators = false,
@@ -173,6 +174,18 @@ export const Range: FunctionComponent<CheckboxProps> = ({
     value= max,
     ...props
 }): ReactElement => {
+
+    const { graphics }: Global = Global.useContext();
+
+    const rangeMouseOutHandler = useCallback((event: MouseEvent<HTMLDivElement>): void => {
+        event.preventDefault();
+        graphics.cursor = 'default';
+    }, [ graphics ]);
+
+    const rangeMouseOverHandler = useCallback((event: MouseEvent<HTMLDivElement>): void => {
+        event.preventDefault();
+        graphics.cursor = 'pointer';
+    }, [ graphics ]);
 
     const leftButtonClickHandler = useCallback((event: MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
@@ -203,7 +216,12 @@ export const Range: FunctionComponent<CheckboxProps> = ({
     ), [ indicators ]);
 
     return (
-        <RangeContainer className={ className } disabled={ disabled }>
+        <RangeContainer
+            className={ className }
+            disabled={ disabled }
+            onMouseOut={ rangeMouseOutHandler }
+            onMouseOver={ rangeMouseOverHandler }
+        >
             <RangeButtonLeft disabled={ disabled } onClick={ leftButtonClickHandler }/>
             <RangeElement
                 type="range"
@@ -219,4 +237,4 @@ export const Range: FunctionComponent<CheckboxProps> = ({
             <RangeButtonRight disabled={ disabled } onClick={ rightButtonClickHandler }/>
         </RangeContainer>
     );
-};
+});

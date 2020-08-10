@@ -71,7 +71,8 @@ export const MainMenu: FunctionComponent = observer((): ReactElement => {
                 </MainMenuListItem>
                 <MainMenuListItem>
                     <MainMenuOption
-                        to="/menu/multiplayer"
+                        // to="/menu/multiplayer"
+                        to="/4aff91c8-d941-4cea-b615-01a18f360d64/pwl"
                         onMouseOver={ (event: MouseEvent<HTMLAnchorElement>): void => {
                             event.preventDefault();
                             graphics.cursor = 'pointer';

@@ -7,6 +7,7 @@ import { GlobalStyle } from 'UI/Global/style';
 import { CursorOverlay } from 'UI/CursorOverlay';
 import { Intro } from 'UI/Intro';
 import { MainMenu } from 'UI/MainMenu';
+import { PwlScreen } from 'UI/PwlScreen';
 import { Singleplayer } from 'UI/Singleplayer';
 import { SelectScenario } from 'UI/SelectScenario';
 import { Options } from 'UI/Options';
@@ -14,6 +15,7 @@ import { GameplayOptions } from 'UI/GameplayOptions';
 import { GraphicsOptions } from 'UI/GraphicsOptions';
 import { GameLogo } from 'UI/GameLogo';
 import { MenuBackground } from 'UI/MenuBackground';
+import { AdventureMap } from 'UI/AdventureMap';
 
 import { Global as GlobalState } from 'GameMechanics/Type/Global';
 import { Language } from 'GameMechanics/Type/Language';
@@ -52,6 +54,12 @@ export const Global: FunctionComponent = (): ReactElement => (
                             <Route path="/menu/options/graphics" exact>
                                 <GraphicsOptions/>
                             </Route>
+                        </Route>
+                        <Route path="/:uuid/pwl">
+                            <PwlScreen/>
+                        </Route>
+                        <Route path="/:uuid/advmap">
+                            <AdventureMap/>
                         </Route>
                     </Switch>
                 </Router>

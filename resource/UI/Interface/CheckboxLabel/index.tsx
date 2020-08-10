@@ -1,7 +1,8 @@
-import React, { DetailedHTMLProps, FunctionComponent, LabelHTMLAttributes, ReactElement } from 'react';
+import React, { useCallback, DetailedHTMLProps, FunctionComponent, LabelHTMLAttributes, MouseEvent, ReactElement } from 'react';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
+import { Global } from 'GameMechanics/Type/Global';
 
 const CheckboxGroupLabel = styled.label
 `
@@ -17,12 +18,38 @@ const CheckboxGroupLabel = styled.label
     color: #bfb79b;
     text-align: left;
     line-height: 25px;
-    cursor: url('${ CursorPointerTexture }'), pointer;
+    cursor: none;
     flex-shrink: 0;
 `;
 
 export type CheckboxLabelProps = Omit<DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>, 'ref'>;
 
-export const CheckboxLabel: FunctionComponent<CheckboxLabelProps> = ({ children, ...props }): ReactElement => (
-    <CheckboxGroupLabel { ...props }>{ children }</CheckboxGroupLabel>
-);
+export const CheckboxLabel: FunctionComponent<CheckboxLabelProps> = observer(({
+    onMouseOut = (): void => {},
+    onMouseOver = (): void => {},
+    children,
+    ...props
+}): ReactElement => {
+
+    const { graphics }: Global = Global.useContext();
+
+    const checkboxLabelMouseOutHandler = useCallback((event: MouseEvent<HTMLLabelElement>): void => {
+        graphics.cursor = 'default';
+        onMouseOut(event);
+    }, [ graphics, onMouseOut ]);
+
+    const checkboxLabelMouseOverHandler = useCallback((event: MouseEvent<HTMLLabelElement>): void => {
+        graphics.cursor = 'pointer';
+        onMouseOut(event);
+    }, [ graphics, onMouseOver ]);
+
+    return (
+        <CheckboxGroupLabel
+            onMouseOut={ checkboxLabelMouseOutHandler }
+            onMouseOver={ checkboxLabelMouseOverHandler }
+            { ...props }
+        >
+            { children }
+        </CheckboxGroupLabel>
+    );
+});
