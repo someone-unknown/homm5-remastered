@@ -1,12 +1,13 @@
-import React, { DetailedHTMLProps, FunctionComponent, InputHTMLAttributes, ReactElement } from 'react';
+import React, { useCallback, DetailedHTMLProps, FunctionComponent, InputHTMLAttributes, MouseEvent, ReactElement } from 'react';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
+
+import { Global } from 'GameMechanics/Type/Global';
 
 import CheckboxCheckedDisabledTexture from 'Media/Texture/Interface/Checkbox/Checked/Disabled.png';
 import CheckboxCheckedNormalTexture from 'Media/Texture/Interface/Checkbox/Checked/Normal.png';
 import CheckboxUncheckedDisabledTexture from 'Media/Texture/Interface/Checkbox/Unchecked/Disabled.png';
 import CheckboxUncheckedNormalTexture from 'Media/Texture/Interface/Checkbox/Unchecked/Normal.png';
-
-import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
 
 const CheckboxElement = styled.input
 `
@@ -21,7 +22,7 @@ const CheckboxElement = styled.input
     appearance: none;
     outline: none;
     background: transparent url('${ CheckboxUncheckedNormalTexture }');
-    cursor: url('${ CursorPointerTexture }'), pointer;
+    cursor: none;
     flex-shrink: 0;
 
     :checked {
@@ -41,6 +42,30 @@ const CheckboxElement = styled.input
 
 export type CheckboxProps = Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'ref' | 'type'>;
 
-export const Checkbox: FunctionComponent<CheckboxProps> = ({ ...props }): ReactElement => (
-    <CheckboxElement type="checkbox" { ...props }/>
-);
+export const Checkbox: FunctionComponent<CheckboxProps> = observer(({
+    onMouseOut = (): void => {},
+    onMouseOver = (): void => {},
+    ...props
+}): ReactElement => {
+
+    const { graphics }: Global = Global.useContext();
+
+    const checkboxMouseOutHandler = useCallback((event: MouseEvent<HTMLInputElement>): void => {
+        graphics.cursor = 'default';
+        onMouseOut(event);
+    }, []);
+
+    const checkboxMouseOverHandler = useCallback((event: MouseEvent<HTMLInputElement>): void => {
+        graphics.cursor = 'pointer';
+        onMouseOver(event);
+    }, []);
+
+    return (
+        <CheckboxElement
+            type="checkbox"
+            onMouseOut={ checkboxMouseOutHandler }
+            onMouseOver={ checkboxMouseOverHandler }
+            { ...props }
+        />
+    );
+});

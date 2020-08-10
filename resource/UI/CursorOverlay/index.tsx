@@ -53,8 +53,8 @@ export const CursorOverlay: FunctionComponent = observer((): ReactElement => {
     }, []);
 
     const documentMouseMoveHandler = useCallback((event: MouseEvent): void => {
-        setScreenX(event.screenX - 9);
-        setScreenY(event.screenY - 2);
+        setScreenX(event.clientX - 9);
+        setScreenY(event.clientY - 2);
     }, [ setScreenX, setScreenY ]);
 
     const documentMouseOutHandler = useCallback((): void => {

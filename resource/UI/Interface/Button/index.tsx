@@ -1,11 +1,12 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps, Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { useCallback, ButtonHTMLAttributes, DetailedHTMLProps, FunctionComponent, MouseEvent, ReactElement } from 'react';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
+
+import { Global } from 'GameMechanics/Type/Global';
 
 import ButtonDisabledTexture from 'Media/Texture/Interface/Button/Disabled.png';
 import ButtonNormalTexture from 'Media/Texture/Interface/Button/Normal.png';
 import ButtonPushedTexture from 'Media/Texture/Interface/Button/Pushed.png';
-
-import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
 
 const StyledButtonContainer = styled.div
 `
@@ -32,7 +33,7 @@ const StyledButtonElement = styled.button
     border-radius: 6px;
     background: transparent;
     outline: none;
-    cursor: url('${ CursorPointerTexture }'), pointer;
+    cursor: none;
     align-items: center;
     justify-content: center;
     color: #ffbf60;
@@ -78,9 +79,33 @@ const StyledButtonBackground = styled.div
 
 export type ButtonProps = Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, 'ref'>;
 
-export const Button: FunctionComponent<ButtonProps> = ({ className = '', ...props }): ReactElement => (
-    <StyledButtonContainer className={ className }>
-        <StyledButtonElement { ...props }/>
-        <StyledButtonBackground/>
-    </StyledButtonContainer>
-);
+export const Button: FunctionComponent<ButtonProps> = observer(({
+    className = '',
+    onMouseOut = (): void => {},
+    onMouseOver = (): void => {},
+    ...props
+}): ReactElement => {
+
+    const { graphics }: Global = Global.useContext();
+
+    const buttonMouseOutHandler = useCallback((event: MouseEvent<HTMLButtonElement>): void => {
+        graphics.cursor = 'default';
+        onMouseOut(event);
+    }, []);
+
+    const buttonMouseOverHandler = useCallback((event: MouseEvent<HTMLButtonElement>): void => {
+        graphics.cursor = 'pointer';
+        onMouseOver(event);
+    }, []);
+
+    return (
+        <StyledButtonContainer className={ className }>
+            <StyledButtonElement
+                onMouseOut={ buttonMouseOutHandler }
+                onMouseOver={ buttonMouseOverHandler }
+                { ...props }
+            />
+            <StyledButtonBackground/>
+        </StyledButtonContainer>
+    );
+});
