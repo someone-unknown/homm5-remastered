@@ -2,6 +2,7 @@ import { observable } from 'mobx';
 import { createContext, createElement, useContext, Context, FunctionComponent, ReactElement } from 'react';
 import { observer, useObserver } from 'mobx-react';
 
+import { AdventureMap } from 'GameMechanics/Type/AdventureMap';
 import { Graphics } from 'GameMechanics/Type/Graphics';
 import { Language } from 'GameMechanics/Type/Language';
 import { Music } from 'GameMechanics/Type/Music';
@@ -38,5 +39,8 @@ export class Global
 
     @observable
     public readonly scenario: Scenario = new Scenario();
+
+    @observable
+    public readonly adventureMap: AdventureMap = new AdventureMap({});
 
 }

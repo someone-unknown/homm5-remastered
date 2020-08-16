@@ -40,9 +40,9 @@ const ShowHideCheckboxElement = styled.input
     }
 `;
 
-export type ShowHideButtonProps = Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'ref' | 'type'>;
+export type ShowHideCheckboxProps = Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'ref' | 'type'>;
 
-export const ShowHideCheckbox: FunctionComponent<ShowHideButtonProps> = observer(({
+export const ShowHideCheckbox: FunctionComponent<ShowHideCheckboxProps> = observer(({
     onMouseOut = (): void => {},
     onMouseOver = (): void => {},
     ...props
