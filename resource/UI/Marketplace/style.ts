@@ -7,9 +7,9 @@ import MarketplaceBackgroundTexture from 'Media/Texture/Marketplace/Background.p
 import CursorDefaultTexture from 'Media/Texture/Cursor/Default.png';
 import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
 
-import ExitTownDisabled1Texture from 'Media/Texture/Interface/ExitTown/1/Disabled.png';
-import ExitTownNormal1Texture from 'Media/Texture/Interface/ExitTown/1/Normal.png';
-import ExitTownPressed1Texture from 'Media/Texture/Interface/ExitTown/1/Pressed.png';
+import ExitTownDisabled1Texture from 'Media/Texture/Interface/JogDial/ExitTown/1/Disabled.png';
+import ExitTownNormal1Texture from 'Media/Texture/Interface/JogDial/ExitTown/1/Normal.png';
+import ExitTownPressed1Texture from 'Media/Texture/Interface/JogDial/ExitTown/1/Pressed.png';
 
 interface MarketplaceResourceItemProps
 {

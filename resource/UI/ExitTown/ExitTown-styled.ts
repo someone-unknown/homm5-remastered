@@ -1,27 +1,19 @@
 import styled from 'styled-components';
-
 import CursorPointerTexture from 'Media/Texture/Cursor/Pointer.png';
 import CursorDefaultTexture from 'Media/Texture/Cursor/Default.png';
-
 import ExitTownDisabled1Texture from 'Media/Texture/Interface/ExitTown/1/Disabled.png';
 import ExitTownNormal1Texture from 'Media/Texture/Interface/ExitTown/1/Normal.png';
 import ExitTownPressed1Texture from 'Media/Texture/Interface/ExitTown/1/Pressed.png';
-
 import ExitTownNormal2Texture from 'Media/Texture/Interface/ExitTown/2/Normal.png';
 import ExitTownPressed2Texture from 'Media/Texture/Interface/ExitTown/2/Pressed.png';
-
 import ExitTownNormal3Texture from 'Media/Texture/Interface/ExitTown/3/Normal.png';
 import ExitTownPressed3Texture from 'Media/Texture/Interface/ExitTown/3/Pressed.png';
-
 import ExitTownNormal4Texture from 'Media/Texture/Interface/ExitTown/4/Normal.png';
 import ExitTownPressed4Texture from 'Media/Texture/Interface/ExitTown/4/Pressed.png';
-
 import ExitTownNormal5Texture from 'Media/Texture/Interface/ExitTown/5/Normal.png';
 import ExitTownPressed5Texture from 'Media/Texture/Interface/ExitTown/5/Pressed.png';
-
 import ExitTownNormal6Texture from 'Media/Texture/Interface/ExitTown/6/Normal.png';
 import ExitTownPressed6Texture from 'Media/Texture/Interface/ExitTown/6/Pressed.png';
-
 import ExitTownNormal7Texture from 'Media/Texture/Interface/ExitTown/7/Normal.png';
 import ExitTownPressed7Texture from 'Media/Texture/Interface/ExitTown/7/Pressed.png';
 

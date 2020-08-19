@@ -1,6 +1,8 @@
 import React, { useCallback, useState, ChangeEvent, FunctionComponent, ReactElement } from 'react';
 import { observer } from 'mobx-react';
 
+import { Global } from 'GameMechanics/Type/Global';
+
 import { ShowHideCheckbox } from 'UI/Interface/ShowHideCheckbox';
 
 import {
@@ -12,16 +14,17 @@ import {
     ResourceBarText
 } from 'UI/ResourceBar/style';
 
-import { Wood } from 'Media/Texture/Resource/Wood';
-import { Ore } from 'Media/Texture/Resource/Ore';
-import { Mercury } from 'Media/Texture/Resource/Mercury';
-import { Crystal } from 'Media/Texture/Resource/Crystal';
-import { Sulfur } from 'Media/Texture/Resource/Sulfur';
-import { Gem } from 'Media/Texture/Resource/Gem';
-import { Gold } from 'Media/Texture/Resource/Gold';
+import ResourceWoodTexture from 'Media/Texture/Resource/Wood.png';
+import ResourceOreTexture from 'Media/Texture/Resource/Ore.png';
+import ResourceMercuryTexture from 'Media/Texture/Resource/Mercury.png';
+import ResourceCrystalTexture from 'Media/Texture/Resource/Crystal.png';
+import ResourceSulfurTexture from 'Media/Texture/Resource/Sulfur.png';
+import ResourceGemTexture from 'Media/Texture/Resource/Gem.png';
+import ResourceGoldTexture from 'Media/Texture/Resource/Gold.png';
 
 export const ResourceBar: FunctionComponent = observer((): ReactElement => {
 
+    const { adventureMap }: Global = Global.useContext();
     const [ open, setOpen ] = useState<boolean>(true);
 
     const showHideCheckboxChangeHandler = useCallback((event: ChangeEvent<HTMLInputElement>): void => {
@@ -37,32 +40,46 @@ export const ResourceBar: FunctionComponent = observer((): ReactElement => {
                 />
                 <ResourceBarFrame open={ open }>
                     <ResourceBarSection>
-                        <ResourceBarIcon src={ Wood }/>
-                        <ResourceBarText>{ 0 }</ResourceBarText>
+                        <ResourceBarIcon src={ ResourceWoodTexture }/>
+                        <ResourceBarText>
+                            { adventureMap.players[ adventureMap.currentPlayer ].resource.wood }
+                        </ResourceBarText>
                     </ResourceBarSection>
                     <ResourceBarSection>
-                        <ResourceBarIcon src={ Ore }/>
-                        <ResourceBarText>{ 0 }</ResourceBarText>
+                        <ResourceBarIcon src={ ResourceOreTexture }/>
+                        <ResourceBarText>
+                            { adventureMap.players[ adventureMap.currentPlayer ].resource.ore }
+                        </ResourceBarText>
                     </ResourceBarSection>
                     <ResourceBarSection>
-                        <ResourceBarIcon src={ Mercury }/>
-                        <ResourceBarText>{ 0 }</ResourceBarText>
+                        <ResourceBarIcon src={ ResourceMercuryTexture }/>
+                        <ResourceBarText>
+                            { adventureMap.players[ adventureMap.currentPlayer ].resource.mercury }
+                        </ResourceBarText>
                     </ResourceBarSection>
                     <ResourceBarSection>
-                        <ResourceBarIcon src={ Crystal }/>
-                        <ResourceBarText>{ 0 }</ResourceBarText>
+                        <ResourceBarIcon src={ ResourceCrystalTexture }/>
+                        <ResourceBarText>
+                            { adventureMap.players[ adventureMap.currentPlayer ].resource.crystal }
+                        </ResourceBarText>
                     </ResourceBarSection>
                     <ResourceBarSection>
-                        <ResourceBarIcon src={ Sulfur }/>
-                        <ResourceBarText>{ 0 }</ResourceBarText>
+                        <ResourceBarIcon src={ ResourceSulfurTexture }/>
+                        <ResourceBarText>
+                            { adventureMap.players[ adventureMap.currentPlayer ].resource.sulfur }
+                        </ResourceBarText>
                     </ResourceBarSection>
                     <ResourceBarSection>
-                        <ResourceBarIcon src={ Gem }/>
-                        <ResourceBarText>{ 0 }</ResourceBarText>
+                        <ResourceBarIcon src={ ResourceGemTexture }/>
+                        <ResourceBarText>
+                            { adventureMap.players[ adventureMap.currentPlayer ].resource.gem }
+                        </ResourceBarText>
                     </ResourceBarSection>
                     <ResourceBarSection>
-                        <ResourceBarIcon src={ Gold }/>
-                        <ResourceBarText>{ 0 }</ResourceBarText>
+                        <ResourceBarIcon src={ ResourceGoldTexture }/>
+                        <ResourceBarText>
+                            { adventureMap.players[ adventureMap.currentPlayer ].resource.gold }
+                        </ResourceBarText>
                     </ResourceBarSection>
                 </ResourceBarFrame>
             </ResourceBarFrameContainer>

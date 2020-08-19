@@ -72,11 +72,11 @@ export const GameplayOptions: FunctionComponent = observer((): ReactElement => {
                                 id="2c0f6104-b09d-4faf-84e6-fea5e9ba9945"
                                 options={ {
                                     'en-US': 'English',
-                                    'ru-RU': 'Русский'
+                                    'ru-RU': 'Русский',
                                 } }
                                 value={ language.locale as string }
                                 onChange={handleChangeLanguage}
-                            />
+                            />ShowHideCheckboxElement
                         </InputGroup>
                     </GameplayOptionsLeftPanel>
                     <GameplayOptionsRightPanel>
