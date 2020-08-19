@@ -1,0 +1,1 @@
+export { GameLogo } from './GameLogo'
