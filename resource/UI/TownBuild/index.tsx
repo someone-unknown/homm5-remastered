@@ -23,7 +23,7 @@ export const TownBuild: FunctionComponent = observer((): ReactElement => {
     const history: History = useHistory();
     const { build, canBuild, getArrowsByCoordinate, getBuildingsByCoordinate, id, isBuilt, level, matchBuildRequirements }: TownState = useTownStateContext();
 
-    const [ isExpanded, setIsExpanded ] = useState<boolean>(false);
+    // const [ isExpanded, setIsExpanded ] = useState<boolean>(false);
 
     const exitButtonClickHandler = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
@@ -85,7 +85,7 @@ export const TownBuild: FunctionComponent = observer((): ReactElement => {
                                             }}
                                         >
                                             <TownBuildIcon src={building.icon}/>
-                                            {arrows.map((arrow: TownArrow, index: number): ReactElement => createElement({1: TownBuildArrow1, 2: TownBuildArrow2, 3: TownBuildArrow3 }[arrow.length], { key: `${posX}:${posY}:${index}` }))}
+                                            {arrows.map((arrow: TownArrow, index: number): ReactElement => createElement([TownBuildArrow1, TownBuildArrow2, TownBuildArrow3][arrow.length - 1], { key: `${posX}:${posY}:${index}` }))}
                                         </TownBuildCell>
                                     </Fragment>
                                 );

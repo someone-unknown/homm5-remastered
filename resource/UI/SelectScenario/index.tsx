@@ -68,7 +68,7 @@ export const SelectScenario: FunctionComponent = observer((): ReactElement => {
                                 <FormattedMessage id="singleplayer.scenario.create.settings.turnLimit"/>
                                 <SelectScenarioSettingsValue>
                                     { useMemo((): ReactElement => {
-                                        if (scenario.turnLimit === Infinity)
+                                        if (scenario.getTurnLimit === Infinity)
                                         {
                                             return (
                                                 <FormattedMessage id="singleplayer.scenario.create.settings.turnLimit.infinity"/>
@@ -80,19 +80,19 @@ export const SelectScenario: FunctionComponent = observer((): ReactElement => {
                                                 <FormattedMessage
                                                     id="singleplayer.scenario.create.settings.turnLimit.value"
                                                     values={{
-                                                        value: scenario.turnLimit
+                                                        value: scenario.getTurnLimit
                                                     }}
                                                 />
                                             );
                                         }
-                                    }, [ scenario.turnLimit ]) }
+                                    }, [ scenario.getTurnLimit ]) }
                                 </SelectScenarioSettingsValue>
                             </SelectScenarioSettingsInputLabel>
                             <Range
                                 min={ 1 }
                                 max={ 31 }
                                 step={ 1 }
-                                value={ useMemo((): number => scenario.turnLimit === Infinity ? 31 : scenario.turnLimit, [ scenario.turnLimit ]) }
+                                value={ useMemo((): number => scenario.getTurnLimit === Infinity ? 31 : scenario.turnLimit, [ scenario.turnLimit ]) }
                                 onChange={ (value: number): void => {
                                     scenario.turnLimit = value === 31 ? Infinity : value;
                                 } }
@@ -105,7 +105,7 @@ export const SelectScenario: FunctionComponent = observer((): ReactElement => {
                                     <FormattedMessage
                                         id={ useMemo((): string => {
                                             return `difficulty.${ [ null, 'easy', 'medium', 'hard', 'heroic', 'evil' ][ scenario.difficulty ] }`;
-                                        }, [ scenario.difficulty ]) }
+                                        }, [ scenario.getDifficulty ]) }
                                     />
                                 </SelectScenarioSettingsValue>
                             </SelectScenarioSettingsInputLabel>
@@ -113,7 +113,7 @@ export const SelectScenario: FunctionComponent = observer((): ReactElement => {
                                 min={ 1 }
                                 max={ 5 }
                                 step={ 1 }
-                                value={ scenario.difficulty }
+                                value={ scenario.getDifficulty }
                                 onChange={ (value: number): void => {
                                     scenario.difficulty = value as Difficulty;
                                 } }
